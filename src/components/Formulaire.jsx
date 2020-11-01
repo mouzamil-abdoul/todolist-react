@@ -1,8 +1,13 @@
 import React from "react";
 
-const Formulaire = ({ inputText, setInputText, todos, setTodos }) => {
+const Formulaire = ({
+  inputText,
+  setInputText,
+  todos,
+  setTodos,
+  setStatus,
+}) => {
   const inputTextHandler = (e) => {
-    console.log(e.target.value);
     setInputText(e.target.value);
   };
   const submitTodoHandler = (e) => {
@@ -13,7 +18,9 @@ const Formulaire = ({ inputText, setInputText, todos, setTodos }) => {
     ]);
     setInputText("");
   };
-
+  const statusHandler = (e) => {
+    setStatus(e.target.value);
+  };
   return (
     <form>
       <input value={inputText} onChange={inputTextHandler} type="text" />
@@ -21,10 +28,10 @@ const Formulaire = ({ inputText, setInputText, todos, setTodos }) => {
         <i className="fas fa-plus-square"></i>
       </button>
       <div>
-        <select name="filtres" id="">
-          <option value="tout">Toutes</option>
+        <select onChange={statusHandler} name="filtres" id="">
+          <option value="toutes">Toutes</option>
           <option value="accomplies">Accomplies</option>
-          <option value="innaccomplies">Innaccomplies</option>
+          <option value="inaccomplies">Inaccomplies</option>
         </select>
       </div>
     </form>
