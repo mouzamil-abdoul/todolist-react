@@ -5,10 +5,12 @@ import Formulaire from "./components/Formulaire";
 import TodoList from "./components/TodoList";
 
 function App() {
+  //useState
   const [inputText, setInputText] = useState("");
   const [todos, setTodos] = useState([]);
   const [status, setStatus] = useState("toutes");
   const [filteredTodos, setFilteredTodos] = useState([]);
+  //Fonctions
   const filterHandler = () => {
     switch (status) {
       case "accomplies":
@@ -22,13 +24,35 @@ function App() {
         break;
     }
   };
+  //useEffect
+  useEffect(() => {
+    getLocalTodos();
+  }, []);
+
   useEffect(() => {
     filterHandler();
+    saveLocalTodos();
   }, [todos, status]);
+
+  //Sauvegarde dans localStorage
+  const saveLocalTodos = () => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  };
+  const getLocalTodos = () => {
+    if (localStorage.getItem("todos") === null) {
+      localStorage.setItem("todos", JSON.stringify([]));
+    } else {
+      let todoLocal = JSON.parse(
+        localStorage.getItem("todos", JSON.stringify(todos))
+      );
+      setTodos(todoLocal);
+    }
+  };
+
   return (
     <div className="App">
       <header>
-        <h1>Mouzamil's ToDo List {inputText}</h1>
+        <h1>Mouzamil's ToDo List</h1>
       </header>
       <Formulaire
         todos={todos}
