@@ -51,21 +51,23 @@ function App() {
 
   return (
     <div className="App">
-      <header>
-        <h1>Mouzamil's ToDo List</h1>
-      </header>
-      <Formulaire
-        todos={todos}
-        setTodos={setTodos}
-        setInputText={setInputText}
-        inputText={inputText}
-        setStatus={setStatus}
-      />
-      <TodoList
-        todos={todos}
-        setTodos={setTodos}
-        filteredTodos={filteredTodos}
-      />
+      <div className="container">
+        <header>
+          <h1>Mouzamil's ToDo List</h1>
+        </header>
+        <Formulaire
+          todos={todos}
+          setTodos={setTodos}
+          setInputText={setInputText}
+          inputText={inputText}
+          setStatus={setStatus}
+        />
+        <TodoList
+          todos={todos}
+          setTodos={setTodos}
+          filteredTodos={filteredTodos}
+        />
+      </div>
     </div>
   );
 }

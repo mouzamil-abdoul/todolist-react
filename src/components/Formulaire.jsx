@@ -12,6 +12,9 @@ const Formulaire = ({
   };
   const submitTodoHandler = (e) => {
     e.preventDefault();
+    if (inputText.trim() === "") {
+      return alert("Vous n'avez pas saisi de tâche");
+    }
     setTodos([
       ...todos,
       { text: inputText, completed: false, id: Math.random() * 1000 },
@@ -25,9 +28,10 @@ const Formulaire = ({
     <form>
       <input value={inputText} onChange={inputTextHandler} type="text" />
       <button onClick={submitTodoHandler} type="submit">
-        <i className="fas fa-plus-square"></i>
+        Ajouter
       </button>
-      <div>
+
+      <div className="filtre">
         <select onChange={statusHandler} name="filtres" id="">
           <option value="toutes">Toutes</option>
           <option value="accomplies">Accomplies</option>
